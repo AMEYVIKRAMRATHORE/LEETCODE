@@ -18,8 +18,22 @@ int ftd(vector<int>&arr,int i){
     return dp[i]=max(take,dtake);
 
 }
+int fbu(vector<int>arr){
+    int n=arr.size();
+    if(n==1) return arr[0];
+    dp.resize(n);
+    dp[n-1]=arr[n-1];
+    dp[n-2]=max(arr[n-1],arr[n-2]);
+     for(int i=n-3;i>=0;i--){
+       int take=arr[i]+dp[i+2];
+    int dtake=0+dp[i+1]; 
+    dp[i]=max(take,dtake);
+    }
+    return dp[0];
+     }
+
     int rob(vector<int>& nums) {
       dp.resize(105,-1);
-      return ftd(nums,0); 
+      return fbu(nums); 
     }
 };
